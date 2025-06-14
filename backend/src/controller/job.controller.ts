@@ -221,13 +221,9 @@ const getUserApplications = async (req: Request, res: Response) => {
 
 const updateApplicationStatus = async (req: Request, res: Response) => {
   try {
-    console.log(
-      "updateApplicationStatus called ..............................................."
-    );
     const { status } = req.body;
-    console.log("body", req.body);
+
     const applicationId = req.params.id;
-    console.log("applicationId", applicationId);
 
     const updated = await prisma.applications.update({
       where: {
@@ -237,8 +233,6 @@ const updateApplicationStatus = async (req: Request, res: Response) => {
         status,
       },
     });
-
-    console.log("updtaed application", updated);
 
     res.status(200).json({ message: "status updated successfully!!" });
   } catch (error) {

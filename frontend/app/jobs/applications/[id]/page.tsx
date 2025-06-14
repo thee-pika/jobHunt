@@ -3,7 +3,7 @@
 import useAuth from "@/app/hooks/useAuth";
 import ApplicationService from "@/app/services/application";
 import ApplicationT from "@/app/types/interfaces/application";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast, Toaster } from "sonner";
 
@@ -12,7 +12,6 @@ const Applications = () => {
   const [applications, setApplications] = useState<ApplicationT[]>([]);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
-  const router = useRouter();
 
   const getApplications = async () => {
     try {

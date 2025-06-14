@@ -49,7 +49,7 @@ const SignUpPage = () => {
       } else {
         toast.error(signupRes.data.message || "signup failed");
       }
-    } catch (error) {
+    } catch (error:unknown) {
       toast.error("Something went wrong");
       console.error(error);
     } finally {
@@ -57,7 +57,7 @@ const SignUpPage = () => {
     }
   };
 
-  const handleChange = (value: any) => {
+  const handleChange = (value: string) => {
     setinputData((prevState) => ({
       ...prevState,
       role: value,

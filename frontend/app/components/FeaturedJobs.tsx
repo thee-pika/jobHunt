@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Building, Clock, IndianRupee, MapPin } from "lucide-react";
 import { useEffect, useState } from "react";
-import useAuth from "../hooks/useAuth";
 import JobService from "../services/job-service";
 import JobT from "../types/interfaces/job";
 import { formatDistanceToNow, parseISO } from "date-fns";

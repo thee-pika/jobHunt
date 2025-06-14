@@ -1,4 +1,5 @@
 import { Frown } from "lucide-react";
+import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -8,12 +9,12 @@ export default function NotFound() {
       <p className="text-gray-500 text-lg">
         Sorry, the page you&#x2c;re looking for doesn&#x2c;t exist.
       </p>
-      <a
+      <Link
         href="/"
         className="mt-6 px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-all duration-200"
       >
         Go Back Home
-      </a>
+      </Link>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import JobT from "../types/interfaces/job";
+
 import Api from "./api";
 
 const JobService = {

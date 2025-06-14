@@ -9,6 +9,7 @@ import axios from "axios";
 import ApplicationT from "../types/interfaces/application";
 import ApplicationService from "../services/application";
 import { Camera } from "lucide-react";
+import Image from "next/image";
 
 const UserProfile = () => {
   const { accessToken, user, updateResume } = useAuth();
@@ -150,9 +151,11 @@ const UserProfile = () => {
             <div className="flex items-center gap-6">
               <div className="relative w-24 h-24">
                 {avatar ? (
-                  <img
+                  <Image
                     src={avatar || "/default-avatar.png"}
                     alt="Avatar"
+                    width={80}
+                    height={80}
                     className="w-24 h-24 rounded-full border-4 border-white shadow object-cover"
                   />
                 ) : (

@@ -15,9 +15,10 @@ import {
 import { useRouter } from "next/navigation";
 import SkeletonL from "../components/loader/Loader";
 import { toast, Toaster } from "sonner";
+import Image from "next/image";
 
 const Companies = () => {
-  const { isAuthenticated, user, accessToken } = useAuth();
+  const {  accessToken } = useAuth();
   const [companies, setCompanies] = useState<CompanyI[]>([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -105,10 +106,12 @@ const Companies = () => {
                       className="border-t hover:bg-gray-100 transition"
                     >
                       <td className="p-4">
-                        <img
+                        <Image
                           src={company.logo_url}
                           alt={`${company.name} logo`}
                           className="w-10 h-10 object-cover rounded-full"
+                          width={40}
+                          height={40}
                         />
                       </td>
                       <td className="p-4">{company.name}</td>
@@ -159,7 +162,7 @@ const Companies = () => {
           <div className=" flex flex-col items-center mt-8 mb-8">
             <SkeletonL />
             {[...Array(6)].map((_, i) => (
-              <div className="m-8">
+              <div className="m-8" key={i}>
                 <SkeletonL />
               </div>
             ))}

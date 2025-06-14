@@ -1,17 +1,39 @@
 import React from "react";
 
-const Sidebar = ({ filters, setFilters }: any) => {
-  const handleCheckboxChange = (key: string, value: string) => {
-    setFilters((prev: any) => ({
-      ...prev,
-      [key]: prev[key]?.includes(value)
-        ? prev[key].filter((item: string) => item !== value) // Remove if already selected
-        : [...(prev[key] || []), value], // Add if not selected
-    }));
+interface FilterT {
+  title: string;
+  location: string;
+  salary: number;
+  type: string;
+}
+
+const Sidebar = ({
+  filters,
+  setFilters,
+}: {
+  filters: FilterT;
+  setFilters: React.Dispatch<React.SetStateAction<FilterT>>;
+}) => {
+  const handleCheckboxChange = (key: keyof FilterT, value: string) => {
+    setFilters((prev: FilterT) => {
+      const currentValue = prev[key];
+
+      if (Array.isArray(currentValue)) {
+        return {
+          ...prev,
+          [key]: currentValue.includes(value)
+            ? currentValue.filter((item) => item !== value)
+            : [...currentValue, value],
+        };
+      }
+
+      console.error(`Invalid field "${key}" for checkbox change`);
+      return prev;
+    });
   };
 
   const handleInputChange = (key: string, value: string | number) => {
-    setFilters((prev: any) => ({ ...prev, [key]: value }));
+    setFilters((prev: FilterT) => ({ ...prev, [key]: value }));
   };
 
   return (
@@ -20,7 +42,9 @@ const Sidebar = ({ filters, setFilters }: any) => {
 
       {/* Title Filter */}
       <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Title
+        </label>
         <input
           type="text"
           placeholder="e.g., Developer"
@@ -31,7 +55,9 @@ const Sidebar = ({ filters, setFilters }: any) => {
 
       {/* Location Filter */}
       <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Location
+        </label>
         <input
           type="text"
           placeholder="e.g., Remote"
@@ -42,7 +68,9 @@ const Sidebar = ({ filters, setFilters }: any) => {
 
       {/* Salary Filter */}
       <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">Salary (Min)</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Salary (Min)
+        </label>
         <input
           type="number"
           placeholder="e.g., 50000"
@@ -53,7 +81,9 @@ const Sidebar = ({ filters, setFilters }: any) => {
 
       {/* Job Type Filter */}
       <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">Job Type</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Job Type
+        </label>
         <div className="flex flex-col">
           {["Full-Time", "Part-Time", "Internship"].map((type) => (
             <label key={type} className="flex items-center space-x-2 mb-2">

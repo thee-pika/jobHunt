@@ -112,6 +112,7 @@ const JobPosting = () => {
         await createJobPosting(updatedForm);
       }
     } catch (error) {
+      console.log("error", error);
       toast.error("some error occured!!");
     } finally {
       setLoading(false);
@@ -248,8 +249,7 @@ const JobPosting = () => {
 
               <Select
                 onValueChange={(value) =>
-                  // setJobForm((prev) => ({ ...prev, company: value }))
-                  setSelectedCompany((prev) => ({ id: value, url: "" }))
+                  setSelectedCompany(() => ({ id: value, url: "" }))
                 }
               >
                 <SelectTrigger className="w-[180px]">

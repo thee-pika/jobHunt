@@ -41,7 +41,6 @@ const EditCompanyDetails = () => {
 
   const getCompanyDetailsById = async () => {
     try {
-      
       setLoading(true);
 
       if (!accessToken || !id) {
@@ -55,7 +54,7 @@ const EditCompanyDetails = () => {
       );
 
       console.log("companyres from service", companyres);
-      const { name, description, location, logo_url } = companyres.data.company;
+      const { name, description, location } = companyres.data.company;
 
       setFormData((prev) => ({
         ...prev,
@@ -67,9 +66,9 @@ const EditCompanyDetails = () => {
       // setLogo(logo_url);
 
       setCompanyDetails(companyres.data.company);
-
-    } catch (error) {
+    } catch (error:unknown) {
       alert("error ocuured.");
+      console.log("error", error);
       return;
     } finally {
       setLoading(false);

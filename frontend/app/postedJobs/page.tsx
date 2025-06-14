@@ -17,7 +17,7 @@ import JobService from "../services/job-service";
 import JobT from "../types/interfaces/job";
 import { toast, Toaster } from "sonner";
 
-const page = () => {
+const PostedJobs = () => {
   const [postedJobs, setPostedJobs] = useState<JobT[]>([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -169,8 +169,8 @@ const page = () => {
         <>
           <div className=" flex flex-col items-center mt-8 mb-8">
             <SkeletonL />
-            {[...Array(6)].map((_, i) => (
-              <div className="m-8">
+            {[...Array(6)].map((__, i) => (
+              <div className="m-8" key={i}>
                 <SkeletonL />
               </div>
             ))}
@@ -182,4 +182,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default PostedJobs;

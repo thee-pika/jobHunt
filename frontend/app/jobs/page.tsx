@@ -24,7 +24,7 @@ const Jobs = () => {
     try {
       setloading(true);
       if (accessToken) {
-        const jobResponse = await JobService.get(accessToken);
+        const jobResponse = await JobService.get();
 
         setJobs(jobResponse.data.jobOpenings);
       }
