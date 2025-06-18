@@ -18,7 +18,7 @@ import { toast, Toaster } from "sonner";
 import Image from "next/image";
 
 const Companies = () => {
-  const {  accessToken } = useAuth();
+  const { accessToken } = useAuth();
   const [companies, setCompanies] = useState<CompanyI[]>([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -132,7 +132,6 @@ const Companies = () => {
                             >
                               Edit
                             </DropdownMenuItem>
-                            <DropdownMenuItem>Applications</DropdownMenuItem>
                             <DropdownMenuItem
                               onClick={() => handleDelete(company.id)}
                             >

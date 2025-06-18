@@ -40,7 +40,7 @@ const Sidebar = ({
     <aside className="w-1/4 p-6 bg-gray-50 shadow-lg rounded-lg">
       <h2 className="text-2xl font-semibold mb-6">Filters</h2>
 
-      {/* Title Filter */}
+    
       <div className="mb-6">
         <label className="block text-sm font-medium text-gray-700 mb-2">
           Title
@@ -53,7 +53,6 @@ const Sidebar = ({
         />
       </div>
 
-      {/* Location Filter */}
       <div className="mb-6">
         <label className="block text-sm font-medium text-gray-700 mb-2">
           Location
@@ -66,7 +65,6 @@ const Sidebar = ({
         />
       </div>
 
-      {/* Salary Filter */}
       <div className="mb-6">
         <label className="block text-sm font-medium text-gray-700 mb-2">
           Salary (Min)
@@ -79,7 +77,6 @@ const Sidebar = ({
         />
       </div>
 
-      {/* Job Type Filter */}
       <div className="mb-6">
         <label className="block text-sm font-medium text-gray-700 mb-2">
           Job Type

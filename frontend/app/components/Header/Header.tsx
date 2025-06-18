@@ -130,35 +130,77 @@ const Header = () => {
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200">
+          <div className="block md:hidden py-4 border-t border-gray-200">
             <nav className="flex flex-col space-y-4">
-              <Link
-                href="/postedJobs"
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-              >
-                Find Jobs
-              </Link>
-              <Link
-                href="/companies"
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-              >
-                Companies
-              </Link>
-              <Link
-                href="/post-job"
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-              >
-                Post a Job
-              </Link>
+              {user?.role === "User" && (
+                <>
+                  <Link
+                    href="/jobs"
+                    className="text-gray-700 hover:text-blue-600 transition-colors"
+                  >
+                    Find Jobs
+                  </Link>
+                </>
+              )}
+              {user?.role === "Recruiter" && (
+                <>
+                  <Link
+                    href="/company"
+                    className="text-gray-700 hover:text-blue-600 transition-colors"
+                  >
+                    Companies
+                  </Link>
+                  <Link
+                    href="/postedJobs"
+                    className="text-gray-700 hover:text-blue-600 transition-colors"
+                  >
+                    Post a Job
+                  </Link>
+                </>
+              )}
+
               <Link
                 href="/about"
-                className="text-gray-700 hover:text-blue-600 transition-colors"
+                className="text-gray-700 hover:text-blue-600 transition-colors bg-gray-300 px-2 py-2"
               >
                 About
               </Link>
-              <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200">
-                <Button className="justify-start">Sign In</Button>
-                <Button className="justify-start">Sign Up</Button>
+
+              <div className="flex md:hidden items-center space-x-4">
+                {isAuthenticated ? (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <button className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 text-white font-bold">
+                        {getInitial(user?.email || "U")}
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem onClick={() => router.push("/profile")}>
+                        Profile
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={handleLogout}>
+                        Logout
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : (
+                  <>
+                    <div className="flex flex-col w-full">
+                      <Link
+                        href="/auth/login"
+                        className="justify-start bg-gray-300 p-2 hover:bg-gray-200 text-black cursor-pointer"
+                      >
+                        Sign In
+                      </Link>
+                      <Link
+                        href="/auth/signup"
+                        className="justify-start bg-[#EC2E3A] text-white p-2 mt-4  hover:bg-[#EC2E3A] cursor-pointer"
+                      >
+                        Sign Up
+                      </Link>
+                    </div>
+                  </>
+                )}
               </div>
             </nav>
           </div>

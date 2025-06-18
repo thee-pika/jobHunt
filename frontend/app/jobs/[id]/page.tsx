@@ -32,7 +32,7 @@ const JobDetails = () => {
         setJob(res.data.jobOpening);
       }
     } catch (error) {
-      console.log(error);
+  
       toast.error("Some error Occured!!");
     } finally {
       setLoading(false);
@@ -72,10 +72,9 @@ const JobDetails = () => {
         }, 2000);
       }
 
-      console.log("res", res);
     } catch (error) {
       toast.error("Some error Occured!!");
-      console.log(error);
+  
     } finally {
       setLoading(false);
     }

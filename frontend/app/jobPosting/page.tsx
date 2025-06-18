@@ -61,7 +61,7 @@ const JobPosting = () => {
         }
       }
     } catch (error) {
-      console.log(error);
+
     } finally {
       setLoading(false);
     }
@@ -75,7 +75,7 @@ const JobPosting = () => {
 
   const createJobPosting = async (form: typeof jobForm) => {
     if (!accessToken || !jobForm) {
-      console.log("not foundddddddddddddddddddd");
+     
       return;
     }
     try {
@@ -83,13 +83,13 @@ const JobPosting = () => {
       const res = await JobService.create(accessToken, form);
 
       if (res.status === 201) {
-        toast("New Job posted.");
+        toast.success("New Job posted.");
         setTimeout(() => {
           router.push("/");
         }, 3000);
       }
     } catch (error) {
-      console.log("Error creating job posting:", error);
+     
     } finally {
       setLoading(false);
     }
@@ -102,7 +102,7 @@ const JobPosting = () => {
       const cmp = companies.find((comp) => comp.id === selectedCompany.id);
 
       if (cmp) {
-        console.log("cmp", cmp);
+    
         const updatedForm = {
           ...jobForm,
           logo_url: cmp.logo_url,
@@ -112,7 +112,7 @@ const JobPosting = () => {
         await createJobPosting(updatedForm);
       }
     } catch (error) {
-      console.log("error", error);
+  
       toast.error("some error occured!!");
     } finally {
       setLoading(false);

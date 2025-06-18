@@ -32,7 +32,6 @@ const PostedJobs = () => {
         setPostedJobs(res.data.jobOpenings);
       }
     } catch (error) {
-      console.log(error);
       toast.error("some error Occured!!");
     } finally {
       setLoading(false);
@@ -54,7 +53,7 @@ const PostedJobs = () => {
         }
       }
     } catch (error) {
-      console.log(error);
+ 
       toast.error("some error Occured!!");
     } finally {
       setLoading(false);

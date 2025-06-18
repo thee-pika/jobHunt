@@ -30,7 +30,7 @@ const FeaturedJobs = ({
 
       setJobs(jobResponse.data.jobOpenings);
     } catch (error) {
-      console.log("error", error);
+   
       toast.error("some errror Ocuured !!");
     } finally {
       setLoading(false);

@@ -8,6 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import useAuth from "@/app/hooks/useAuth";
 import CompanyService from "@/app/services/company-service";
 import CompanyI from "@/app/types/interfaces/company";
+import { toast, Toaster } from "sonner";
+import SkeletonL from "@/app/components/loader/Loader";
 
 const EditCompanyDetails = () => {
   const [loading, setLoading] = useState(false);
@@ -44,7 +46,7 @@ const EditCompanyDetails = () => {
       setLoading(true);
 
       if (!accessToken || !id) {
-        console.log("accessToken not found");
+      
         return;
       }
 
@@ -53,7 +55,6 @@ const EditCompanyDetails = () => {
         id as string
       );
 
-      console.log("companyres from service", companyres);
       const { name, description, location } = companyres.data.company;
 
       setFormData((prev) => ({
@@ -63,12 +64,10 @@ const EditCompanyDetails = () => {
         location,
       }));
 
-      // setLogo(logo_url);
-
       setCompanyDetails(companyres.data.company);
-    } catch (error:unknown) {
-      alert("error ocuured.");
-      console.log("error", error);
+    } catch (error: unknown) {
+      toast.error("error ocuured.");
+    
       return;
     } finally {
       setLoading(false);
@@ -78,35 +77,29 @@ const EditCompanyDetails = () => {
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // if (!logo) {
-    //   alert("Please upload a logo.");
-    //   return;
-    // }
-
     try {
       setLoading(true);
       const form = new FormData();
       if (formData.name !== companyDetails?.name) {
-        console.log("name updated !!", formData.name, companyDetails?.name);
+       
         form.append("name", formData.name);
       }
       if (formData.location !== companyDetails?.location) {
-        console.log("location updated !!");
+
         form.append("location", formData.location);
       }
       if (formData.description !== companyDetails?.description) {
-        console.log("description updated !!");
+
         form.append("description", formData.description);
       }
 
       if (logo) {
-        console.log("logo updated !!");
+
         form.append("image", logo);
       }
 
-      // Check if there is something to update
       if (form.entries().next().done) {
-        alert("No changes to update.");
+        toast.error("No changes to update.");
         return;
       }
 
@@ -122,16 +115,16 @@ const EditCompanyDetails = () => {
       );
 
       if (response.status === 200) {
-        alert("Company updated successfully!");
+        toast.success("Company updated successfully!");
         setFormData({ name: "", description: "", location: "" });
         setLogo(null);
         router.push("/");
       } else {
-        alert(response.data.message || "Failed to register the company.");
+        toast.error(response.data.message || "Failed to register the company.");
       }
     } catch (error) {
-      console.error("Error registering company:", error);
-      alert("An error occurred while registering the company.");
+
+      toast.error("An error occurred while registering the company.");
     } finally {
       setLoading(false);
     }
@@ -228,9 +221,17 @@ const EditCompanyDetails = () => {
         </div>
       ) : (
         <>
-          <div>LOADING ...</div>
+           <div className=" flex flex-col items-center mt-8 mb-8">
+            <SkeletonL />
+            {[...Array(6)].map((_, i) => (
+              <div className="m-8" key={i}>
+                <SkeletonL />
+              </div>
+            ))}
+          </div>
         </>
       )}
+      <Toaster/>
     </>
   );
 };

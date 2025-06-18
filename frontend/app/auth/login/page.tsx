@@ -22,7 +22,6 @@ const LoginPage = () => {
       e.preventDefault();
       setLoading(true);
 
-      console.log("dta sending to login ", inputData);
 
       const loginRes = await AuthService.login({
         email: inputData.email,
@@ -31,11 +30,7 @@ const LoginPage = () => {
 
       if (loginRes.status === 200) {
         const { access_Token, refresh_Token, user } = loginRes.data.tokens;
-        console.log(
-          "access_Token after loginnnnnnnnnnnnnnnnnnnnnnnn",
-          access_Token
-        );
-
+    
         await login(access_Token, refresh_Token, user);
 
         router.push("/");
@@ -44,7 +39,6 @@ const LoginPage = () => {
       }
     } catch (error) {
       alert("Something went wrong");
-      console.log("error", error);
     } finally {
       setLoading(false);
     }

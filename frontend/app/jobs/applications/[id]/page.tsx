@@ -21,7 +21,7 @@ const Applications = () => {
         setApplications(res.data.applications);
       }
     } catch (error) {
-      console.log(error);
+     
     } finally {
       setLoading(false);
     }
@@ -33,7 +33,7 @@ const Applications = () => {
 
   const handleUpdateStatus = async (applicationId: string, status: string) => {
     try {
-      console.log("handleUpdateStatus called!");
+      
       const payload = { status };
 
       if (accessToken) {
@@ -44,7 +44,7 @@ const Applications = () => {
         );
         if (res.status === 200) {
           toast.success(`Status updated to ${status}!`);
-          // Update UI without reload
+         
           setApplications((prev) =>
             prev.map((app) =>
               app.id === applicationId ? { ...app, status } : app
@@ -53,7 +53,7 @@ const Applications = () => {
         }
       }
     } catch (error) {
-      console.log(error);
+     
       toast.error(`Failed to update status to ${status}.`);
     } finally {
       setLoading(false);

@@ -52,18 +52,17 @@ const UserProfile = () => {
       setLoading(true);
 
       if (user) {
-        console.log("im iniside eeeeeeee");
+       
         setJobRole(user.jobRole);
         setBio(user.bio);
       }
     } catch (error) {
-      console.log(error);
+    
     } finally {
       setLoading(false);
     }
   }, [user]);
 
-  console.log("user in profile sectinnnnnnnnn", user);
   const handleUpload = async (
     e: React.ChangeEvent<HTMLInputElement>,
     type: "resume" | "avatar"
@@ -74,7 +73,7 @@ const UserProfile = () => {
 
       const formData = new FormData();
       formData.append("image", file!);
-      console.log("type", type);
+    
 
       const res = await axios.put(
         `${process.env.NEXT_PUBLIC_BACKEND_URI}/api/v1/user/${type}`,
@@ -104,8 +103,6 @@ const UserProfile = () => {
   const handleSaveProfile = async () => {
     try {
       setLoading(true);
-
-      console.log(jobRole, bio);
 
       if (jobRole === "" && bio === "") {
         alert("before save modify!!");

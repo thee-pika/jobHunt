@@ -69,7 +69,7 @@ const EditJobDetails = () => {
       const res = await CompanyService.get(accessToken);
       if (res.status === 200) setCompanies(res.data.companies);
     } catch (err) {
-      console.log("err", err);
+   
       setError("Failed to fetch companies.");
     } finally {
       setLoading(false);
@@ -89,7 +89,7 @@ const EditJobDetails = () => {
         deadline: jobData.deadline ? new Date(jobData.deadline) : null,
       });
     } catch (err) {
-        console.log("err", err);
+      
       setError("Failed to fetch job details.");
     } finally {
       setLoading(false);
@@ -150,7 +150,7 @@ const EditJobDetails = () => {
               Update Job Details
             </h1>
             <form className="space-y-4" onSubmit={handleSubmit}>
-              {/* Job Title */}
+    
               <div>
                 <label className="block mb-2 font-medium">Job Title</label>
                 <Input
@@ -160,7 +160,7 @@ const EditJobDetails = () => {
                   required
                 />
               </div>
-              {/* Salary */}
+  
               <div>
                 <label className="block mb-2 font-medium">Salary</label>
                 <Input
@@ -172,7 +172,7 @@ const EditJobDetails = () => {
                   required
                 />
               </div>
-              {/* Location */}
+      
               <div>
                 <label className="block mb-2 font-medium">Location</label>
                 <Input
@@ -182,7 +182,7 @@ const EditJobDetails = () => {
                   required
                 />
               </div>
-              {/* Skills */}
+      
               <div>
                 <label className="block mb-2 font-medium">Skills</label>
                 <Textarea
@@ -191,7 +191,7 @@ const EditJobDetails = () => {
                   required
                 />
               </div>
-              {/* Deadline */}
+          
               <div>
                 <label className="block mb-2 font-medium">Deadline</label>
                 <Input
@@ -209,7 +209,7 @@ const EditJobDetails = () => {
                   required
                 />
               </div>
-              {/* Company Selection */}
+         
               <div>
                 <label className="block mb-2 font-medium">Company</label>
                 <Select
@@ -228,7 +228,7 @@ const EditJobDetails = () => {
                   </SelectContent>
                 </Select>
               </div>
-              {/* Job Type */}
+
               <div>
                 <label className="block mb-2 font-medium">Job Type</label>
                 <Select
@@ -247,7 +247,7 @@ const EditJobDetails = () => {
                   </SelectContent>
                 </Select>
               </div>
-              {/* Submit Button */}
+             
               <div>
                 <Button type="submit" className="w-full">
                   Update

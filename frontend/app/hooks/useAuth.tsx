@@ -34,8 +34,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     newRefreshToken: string,
     user: UserT
   ) => {
-    // const { id, email, role } = jwtDecode<User>(newAccessToken);
-
     setUser(user);
     setAccessToken(newAccessToken);
     setRefreshToken(newRefreshToken);
@@ -58,8 +56,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     if (accessToken) {
       try {
-        const userdecoded = jwtDecode<{user:UserT}>(accessToken);
-        console.log("user data after refresh", userdecoded);
+        const userdecoded = jwtDecode<{ user: UserT }>(accessToken);
+       
         setUser(userdecoded.user);
         setIsAuthenticated(true);
       } catch (error) {

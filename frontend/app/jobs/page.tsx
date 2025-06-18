@@ -29,7 +29,7 @@ const Jobs = () => {
         setJobs(jobResponse.data.jobOpenings);
       }
     } catch (error) {
-      console.log(error);
+
     } finally {
       setloading(false);
     }

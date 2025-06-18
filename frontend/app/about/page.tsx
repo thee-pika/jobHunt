@@ -5,12 +5,11 @@ import { Button } from "@/components/ui/button";
 const About = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center">
-      {/* Header Section */}
+  
       <div className="w-full bg-blue-700 h-64 flex items-center justify-center text-white text-4xl font-bold">
         About Us
       </div>
 
-      {/* Main Content */}
       <div className="bg-white shadow-lg rounded-2xl mt-[-50px] w-4/5 max-w-4xl p-6">
         <section className="mb-6">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">
@@ -37,7 +36,6 @@ const About = () => {
           </p>
         </section>
 
-        {/* Call-to-Action */}
         <section className="text-center mt-6">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">
             Ready to Work with Us?
